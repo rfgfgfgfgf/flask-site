@@ -17,5 +17,19 @@ def random_fact():
 
 @app.route("/")
 def index():
-    return "<h1>Привет, посмотри факты <a href='/random_fact'>Факты</a></h1>"
+    return "<h1>Привет, посмотри факты <a href='/random_fact'>Посмотреть факты</a></h1>"
+
+
+
+@app.route("/password")
+def password():
+    symboles = ['123456789qwertyuiopasdfghjklzxcvbnm@#$%&']
+    for _ in range(10):
+        return f'<h2>Ваш сгенерированый пароль: {random.choice(symboles)}</h3>'
+
+@app.route("/")
+def index():
+    return "<h1>Привет, здесь ты можешь получить свой надежный пароль: <a href='/password'>Забрать пароль</a></h1>"
+
+
 app.run(debug=True)
