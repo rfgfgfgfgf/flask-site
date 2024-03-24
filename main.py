@@ -1,5 +1,6 @@
 import random
-from flask import Flask
+import string
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -14,21 +15,18 @@ def random_fact():
     return f'<h3>{random.choice(facts_list)}</h3>'
 
 
-
-@app.route("/")
-def index():
-    return "<h1>Привет, посмотри факты <a href='/random_fact'>Посмотреть факты</a></h1>"
-
-
-
 @app.route("/password")
 def password():
     symboles = ['123456789qwertyuiopasdfghjklzxcvbnm@#$%&']
-    for _ in range(10):
-        return f'<h2>Ваш сгенерированый пароль: {random.choice(symboles)}</h3>'
+    return f'<h2>Ваш сгенерированый пароль: {random.choice(symboles)}</h3>'
+
 
 @app.route("/")
 def index():
+    return "<h1>Привет, посмотри факты <a href='/random_fact'>Посмотреть факты</a></h1> <p>Сгенерировать пароль <a href='/password'>посмотреть свой пароль</a><p> "
+
+
+app.run(debug=True)
     return "<h1>Привет, здесь ты можешь получить свой надежный пароль: <a href='/password'>Забрать пароль</a></h1>"
 
 
